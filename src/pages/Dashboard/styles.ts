@@ -54,6 +54,15 @@ export const TableContainer = styled.section`
     width: 100%;
     border-spacing: 0 8px;
 
+    thead {
+      tr {
+        &:hover {
+          transform: none;
+          background: none;
+        }
+      }
+    }
+
     th {
       color: #969cb3;
       font-weight: normal;
@@ -61,6 +70,14 @@ export const TableContainer = styled.section`
       text-align: left;
       font-size: 16px;
       line-height: 24px;
+    }
+
+    tr {
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.01, 1.01);
+      }
     }
 
     td {
@@ -81,6 +98,16 @@ export const TableContainer = styled.section`
 
       &.outcome {
         color: #e83f5b;
+      }
+
+      button {
+        margin-left: 25px;
+        margin-right: -250px;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        color: #fff;
+        background-color: #e83f5b;
       }
     }
 

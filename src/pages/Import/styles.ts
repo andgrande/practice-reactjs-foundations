@@ -23,6 +23,20 @@ export const ImportFileContainer = styled.section`
   padding: 64px;
 `;
 
+export const FileSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    border: 0;
+    background: transparent;
+    color: #e83f5b;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+`;
+
 export const Footer = styled.section`
   margin-top: 36px;
   display: flex;

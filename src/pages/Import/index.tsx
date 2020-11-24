@@ -7,7 +7,13 @@ import Header from '../../components/Header';
 import FileList from '../../components/FileList';
 import Upload from '../../components/Upload';
 
-import { Container, Title, ImportFileContainer, Footer } from './styles';
+import {
+  Container,
+  Title,
+  ImportFileContainer,
+  Footer,
+  FileSection,
+} from './styles';
 
 import alert from '../../assets/alert.svg';
 import api from '../../services/api';
@@ -23,19 +29,34 @@ const Import: React.FC = () => {
   const history = useHistory();
 
   async function handleUpload(): Promise<void> {
-    // const data = new FormData();
+    const data = new FormData();
 
-    // TODO
+    uploadedFiles.map(item => data.append('file', item.file));
 
     try {
-      // await api.post('/transactions/import', data);
+      await api.post('/transactions/import', data);
+      // after processing, remove data from cache and screen
+      data.delete('file');
+      setUploadedFiles([]);
     } catch (err) {
-      // console.log(err.response.error);
+      console.log(err.response.error);
     }
   }
 
   function submitFile(files: File[]): void {
-    // TODO
+    const [fileToSubmit] = [
+      ...files.map(file => {
+        const fileToList: FileProps = {
+          name: file.name,
+          readableSize: filesize(file.size),
+          file,
+        };
+
+        return fileToList;
+      }),
+    ];
+
+    setUploadedFiles([fileToSubmit]);
   }
 
   return (
@@ -45,7 +66,14 @@ const Import: React.FC = () => {
         <Title>Importar uma transação</Title>
         <ImportFileContainer>
           <Upload onUpload={submitFile} />
-          {!!uploadedFiles.length && <FileList files={uploadedFiles} />}
+          {!!uploadedFiles.length && (
+            <FileSection>
+              <FileList files={uploadedFiles} />
+              <button type="button" onClick={() => setUploadedFiles([])}>
+                Excluir
+              </button>
+            </FileSection>
+          )}
 
           <Footer>
             <p>
