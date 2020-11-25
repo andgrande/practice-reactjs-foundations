@@ -16,6 +16,52 @@ export const Title = styled.h1`
   color: #3a3a3a;
 `;
 
+export const Form = styled.form`
+  display: grid;
+  flex-direction: row;
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-gap: 32px; */
+  border: 0px;
+  margin-top: 50px;
+  width: 100%;
+  max-width: 1120px;
+
+  input {
+    width: 80%;
+    margin: 0;
+    justify-content: space-between;
+    align-self: flex-start;
+
+    /* Chrome, Safari, Edge, Opera */
+    input:-webkit-outer-spin-button,
+    input:-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+
+    & + input {
+      margin-right: 50px;
+    }
+  }
+
+  svg {
+    justify-content: flex-end;
+    margin-right: 50px;
+    margin-left: 50px;
+    border-radius: 50%;
+    width: 25%;
+    height: 30px;
+    cursor: pointer;
+    color: blue;
+    border: 1px;
+  }
+`;
+
 export const CardContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -81,12 +127,18 @@ export const TableContainer = styled.section`
     }
 
     td {
-      padding: 20px 32px;
+      padding: 20px 12px;
+      margin-right: -150px;
       border: 0;
       background: #fff;
       font-size: 16px;
       font-weight: normal;
       color: #969cb3;
+
+      input {
+        width: 50%;
+        border: 0px;
+      }
 
       &.title {
         color: #363f5f;
@@ -108,6 +160,16 @@ export const TableContainer = styled.section`
         height: 30px;
         color: #fff;
         background-color: #e83f5b;
+      }
+
+      svg {
+        margin-left: 25px;
+        margin-right: -200px;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        color: blue;
       }
     }
 
